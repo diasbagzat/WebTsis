@@ -29,14 +29,14 @@ export default function SignIn() {
 
   const onSubmit = async (info) => {
     try {
-      const response = await signIn(info);
-      const resJson = await response.json();
-      sessionStorage.setItem("Token", resJson.body.accessToken);
-      if (response.status === 401 || response.status === 400) {
-        throw new Error(response.error);
-      }
+      // const response = await signIn(info);
+      // const resJson = await response.json();
+      // sessionStorage.setItem("Token", resJson.body.accessToken);
+      // if (response.status === 401 || response.status === 400) {
+      //   throw new Error(response.error);
+      // }
 
-      navigate("/home");
+      navigate("/products");
     } catch (error) {
       alert(error);
     }
@@ -89,9 +89,8 @@ export default function SignIn() {
               {...register("username", {
                 required: "Поле обязательно для заполнения",
                 pattern: {
-                  value: /^[a-z]+\.[a-z]+$/i,
-                  message:
-                    "Логин должен быть в формате 'Имя.Фамилия' на латнице.",
+                  value: /^[a-z]+$/i,
+                  message: "Логин должен быть на на латнице.",
                 },
               })}
             />

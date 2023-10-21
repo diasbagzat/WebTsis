@@ -26,14 +26,14 @@ export default function SignUp() {
 
   const onSubmit = async (info) => {
     try {
-      const response = await signUp(info);
-      const resJson = await response.json();
+      // const response = await signUp(info);
+      // const resJson = await response.json();
 
-      if (response.status === 401 || response.status === 400) {
-        throw new Error(response.error);
-      }
-      console.log(resJson);
-      navigate("/");
+      // if (response.status === 401 || response.status === 400) {
+      //   throw new Error(response.error);
+      // }
+      // console.log(resJson);
+      navigate("/products");
     } catch (error) {
       alert(error);
     }

@@ -1,6 +1,5 @@
-import { Box, Stack, Typography } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Avatar, Box, Stack, Typography } from "@mui/material";
+
 import ShareIcon from "@mui/icons-material/Share";
 import { IconButton } from "@mui/material";
 
@@ -8,29 +7,49 @@ import Button from "@mui/material/Button";
 import useDialogModal from "../../hooks/useDialogModal";
 import ProductDetail from "../productDetail/ProductDetail";
 
-const SingleProduct = ({ product, isFav }) => {
+import useCart from "../../hooks/useCart";
+import useFavourite from "../../hooks/useFavourite";
+
+const SingleProduct = ({ product }) => {
   const [
     ProductDetailDialog,
     showProductDetailDialog,
     closeProductDetailDialog,
   ] = useDialogModal(ProductDetail);
+
+  const { addToCart, addToCartText } = useCart(product);
+  const { addToFavourite, addToFavouriteStatus } = useFavourite(product);
   return (
     <>
       <Box
-        disaply="flex"
+        display="flex"
         flexDirection={"column"}
         justifyContent="center"
         alignItems={"center"}
       >
-        <img src={`${product.image}`} alt="Product" width="300px" />
-        <Typography color="#7c4008">{product.name}</Typography>
-        <Typography color="#7c4008">{`${product.price} KZT`}</Typography>
+        <Box>
+          <Avatar
+            src={`${product.image}`}
+            alt="Product"
+            width="200px"
+            sx={{ width: "250px", height: "250px" }}
+          />
+        </Box>
+        <Typography color="#ffffff" variant="h5">
+          {product.name}
+        </Typography>
+        <Typography color="#ffffff">{`${product.price} KZT`}</Typography>
 
-        <Stack direction="row" justifyContent="center" alignItems={"center"}>
-          <IconButton color="success">
-            {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems={"center"}
+          color="white"
+        >
+          <IconButton color="inherit" onClick={addToFavourite}>
+            {addToFavouriteStatus}
           </IconButton>
-          <IconButton color="success">
+          <IconButton color="inherit">
             <ShareIcon />
           </IconButton>
         </Stack>
@@ -44,8 +63,13 @@ const SingleProduct = ({ product, isFav }) => {
           >
             Подробнее
           </Button>
-          <Button variant="contained" color="success" width="300px">
-            Добавить в корзину
+          <Button
+            variant="contained"
+            color="success"
+            width="300px"
+            onClick={addToCart}
+          >
+            {addToCartText}
           </Button>
         </Stack>
         <ProductDetailDialog product={product} />

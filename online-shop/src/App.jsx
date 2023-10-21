@@ -10,6 +10,7 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import MainPage from "./pages/main/Main";
 import ProductsPage from "./pages/productsPage/ProductsPage";
+import Profile from "./pages/profile/Profile";
 
 const theme = createTheme({
   typography: {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/signUp" element={<SignUp />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         {notLoginOrSignUp && <Footer />}
       </ThemeProvider>
