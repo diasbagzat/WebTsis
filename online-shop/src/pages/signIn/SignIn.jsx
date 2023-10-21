@@ -10,12 +10,14 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link as LinkRouter, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../utlis/service";
+import { useUserCtx } from "../../UserContext";
 
-export default function SignIn({ setNotLoginOrSignUp }) {
+export default function SignIn() {
+  const { setNotLoginOrSignUp } = useUserCtx();
   const navigate = useNavigate();
 
   const {
@@ -30,7 +32,7 @@ export default function SignIn({ setNotLoginOrSignUp }) {
       const response = await signIn(info);
       const resJson = await response.json();
       sessionStorage.setItem("Token", resJson.body.accessToken);
-      if (response.status == 401 || response.status == 400) {
+      if (response.status === 401 || response.status === 400) {
         throw new Error(response.error);
       }
 
@@ -108,9 +110,8 @@ export default function SignIn({ setNotLoginOrSignUp }) {
               {...register("password", {
                 required: "Поле обязательно для заполнения",
                 pattern: {
-                  value: /^(?=.*?[0-9])(?=.*?[!@#$%^&*)(+?=._<>\\/]).{8,30}$/i,
-                  message:
-                    "Пароль должен содержать от 8 до 30 символов и иметь хотя бы одну цифру и специсимвол.",
+                  value: /^.{4,}$/i,
+                  message: "Пароль должен содержать от 4 любых символов.",
                 },
               })}
             />

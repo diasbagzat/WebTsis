@@ -1,5 +1,10 @@
-import { createContext } from "react";
+import { createContext, useContext, useState } from "react";
 
-const UserCtx = createContext([]);
+export const UserCtx = createContext();
+export const useUserCtx = () => useContext(UserCtx);
 
-export default UserCtx;
+export const UserProvider = ({ children }) => {
+  const [notLoginOrSignUp, setNotLoginOrSignUp] = useState(true);
+  const value = { notLoginOrSignUp, setNotLoginOrSignUp };
+  return <UserCtx.Provider value={value}>{children}</UserCtx.Provider>;
+};

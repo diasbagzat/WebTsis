@@ -4,8 +4,10 @@ import Toolbar from "@mui/material/Toolbar";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useUserCtx } from "../../UserContext";
 
-const Header = ({ setNotLoginOrSignUp }) => {
+const Header = () => {
+  const { setNotLoginOrSignUp } = useUserCtx();
   const navigate = useNavigate();
   function handleSignIn() {
     setNotLoginOrSignUp(true);
@@ -37,6 +39,15 @@ const Header = ({ setNotLoginOrSignUp }) => {
             onClick={() => navigate("/")}
           >
             Главная
+          </Button>
+          <Button
+            color="inherit"
+            variant="outlined"
+            size="large"
+            sx={{ mx: 2 }}
+            onClick={() => navigate("/products")}
+          >
+            Маркетплейс
           </Button>
 
           <Box sx={{ ml: "auto" }}>
