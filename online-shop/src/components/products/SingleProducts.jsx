@@ -26,8 +26,9 @@ const SingleProduct = ({ product }) => {
         flexDirection={"column"}
         justifyContent="center"
         alignItems={"center"}
+        height="100%"
       >
-        <Box>
+        <Box sx={{ flex: 1 }}>
           <Avatar
             src={`${product.image}`}
             alt="Product"
@@ -35,44 +36,40 @@ const SingleProduct = ({ product }) => {
             sx={{ width: "250px", height: "250px" }}
           />
         </Box>
-        <Typography color="#ffffff" variant="h5">
-          {product.name}
-        </Typography>
-        <Typography color="#ffffff">{`${product.price} KZT`}</Typography>
+        <Box sx={{ mt: "auto" }}>
+          <Typography color="#ffffff" variant="h5">
+            {product.name}
+          </Typography>
+          <Typography color="#ffffff">{`${product.price} KZT`}</Typography>
 
-        <Stack
-          direction="row"
-          justifyContent="center"
-          alignItems={"center"}
-          color="white"
-        >
-          <IconButton color="inherit" onClick={addToFavourite}>
-            {addToFavouriteStatus}
-          </IconButton>
-          <IconButton color="inherit">
-            <ShareIcon />
-          </IconButton>
-        </Stack>
+          <Stack
+            direction="row"
+            justifyContent="center"
+            alignItems={"center"}
+            color="white"
+          >
+            <IconButton color="inherit" onClick={addToFavourite}>
+              {addToFavouriteStatus}
+            </IconButton>
+            <IconButton color="inherit">
+              <ShareIcon />
+            </IconButton>
+          </Stack>
 
-        <Stack direction="column" gap="5px">
-          <Button
-            variant="contained"
-            color="success"
-            width="300px"
-            onClick={() => showProductDetailDialog()}
-          >
-            Подробнее
-          </Button>
-          <Button
-            variant="contained"
-            color="success"
-            width="300px"
-            onClick={addToCart}
-          >
-            {addToCartText}
-          </Button>
-        </Stack>
-        <ProductDetailDialog product={product} />
+          <Stack direction="column" gap="5px" width="300px">
+            <Button
+              variant="contained"
+              color="success"
+              onClick={() => showProductDetailDialog()}
+            >
+              Подробнее
+            </Button>
+            <Button variant="contained" color="success" onClick={addToCart}>
+              {addToCartText}
+            </Button>
+          </Stack>
+          <ProductDetailDialog product={product} />
+        </Box>
       </Box>
     </>
   );

@@ -46,7 +46,7 @@ const Header = () => {
             alignItems: "center",
           }}
         >
-          <img alt="Farm logo" width="150px" src={logo} />
+          <img alt="Farm logo" width="75px" src={logo} />
           <Button
             color="inherit"
             variant="outlined"

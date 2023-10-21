@@ -36,7 +36,7 @@ export default function SignIn() {
       //   throw new Error(response.error);
       // }
 
-      navigate("/products");
+      navigate("/");
     } catch (error) {
       alert(error);
     }

@@ -33,7 +33,7 @@ export default function SignUp() {
       //   throw new Error(response.error);
       // }
       // console.log(resJson);
-      navigate("/products");
+      navigate("/");
     } catch (error) {
       alert(error);
     }

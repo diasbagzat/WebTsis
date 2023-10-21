@@ -66,7 +66,11 @@ const ProductsPage = () => {
       sx={{ mb: 4 }}
     >
       <Paper
-        sx={{ p: 2, background: "linear-gradient(360deg, #b08968, #81b29a)" }}
+        sx={{
+          p: 2,
+          background: "linear-gradient(360deg, #b08968, #81b29a)",
+          height: "100%",
+        }}
       >
         <SingleProduct product={product} />
       </Paper>
@@ -83,6 +87,7 @@ const ProductsPage = () => {
           display: "flex",
           flexDirection: "column",
           background: "#fed9b7",
+          px: 30,
         }}
       >
         <Box
@@ -110,7 +115,7 @@ const ProductsPage = () => {
           <Slide
             direction={show ? "left" : "right"}
             in={show}
-            timeout={{ enter: 500, exit: 100 }}
+            timeout={{ enter: 500, exit: 300 }}
           >
             <Box
               sx={{
@@ -161,9 +166,11 @@ const ProductsPage = () => {
                 <SearchIcon />
               </IconButton>
             </Box>
-            <Grid container justifyContent="center" spacing={2}>
-              {renderProducts}
-            </Grid>
+            <Container maxWidth="lg">
+              <Grid container justifyContent="center" spacing={2}>
+                {renderProducts}
+              </Grid>
+            </Container>
           </Container>
         </Box>
       </Box>

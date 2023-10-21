@@ -42,6 +42,7 @@ export default function Profile() {
         display: "flex",
         flexDirection: "column",
         background: "#fed9b7",
+        px: 30,
       }}
     >
       <Box
